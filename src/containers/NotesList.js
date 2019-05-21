@@ -13,7 +13,7 @@ import './NotesList.css'
 class NotesList extends React.Component {
 
   state = {
-    body:''
+    body:'1'
   };
 
   componentDidMount() {
