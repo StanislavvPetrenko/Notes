@@ -3,11 +3,16 @@ import { NOTES_LIST_LOAD_REQUEST,
           NOTES_LIST_LOAD_ERROR,
           UPD_NOTES_LIST,
           DEL_NOTE_FROM_LIST,
-          ADD_NOTE_TO_LIST } from './constants';
+          ADD_NOTE_TO_LIST,
+          SET_NOTES_LIST_FILTER,
+          SET_NOTE } from './constants';
 
 const initialState = {
   data: [],
-  // detail: {},
+  filter: {
+    group: "all",
+    delete: false
+  },
   loading: true
 };
 
@@ -44,6 +49,16 @@ const notesListReducer = (state = initialState, action) => {
         ...state,
         data: [...state.data, action.payload]
       };
+    case SET_NOTES_LIST_FILTER:
+      return {
+        ...state,
+        filter: action.payload
+      };
+    case SET_NOTE:
+       return {
+       ...state,
+      data: [...state.data.filter((el) => el.id !== action.payload.id), action.payload]
+    };
     default:
       return state
   }

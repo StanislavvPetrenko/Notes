@@ -5,7 +5,7 @@ import {notesGroupLoadRequest,
         notesGroupLoadSuccess,
         notesGroupLoadError,
         addNewNotesGroup,
-        delNotesGroups,
+        delNotesGroup,
         updateNotesGroups} from './actions';
 
 export const addNewGroup = (name) => dispatch => {
@@ -49,7 +49,6 @@ export const getGroupsCollection = () => dispatch => {
         };
         groups.push(group);
       });
-      console.log('Wow');
       dispatch(updateNotesGroups(groups));
       dispatch(notesGroupLoadSuccess());
     })
@@ -57,4 +56,14 @@ export const getGroupsCollection = () => dispatch => {
       console.log("Error getting documents: ", error);
       dispatch(notesGroupLoadError(error));
     });
+};
+
+export const handleDeleteGroup = (id) => dispatch => {
+
+  firebase.firestore().collection('groups').doc(id).delete().then(() => {
+    console.log("Group successfully deleted!");
+    dispatch(delNotesGroup(id))
+  }).catch((error) => {
+    console.error("Group removing document: ", error);
+  });
 };

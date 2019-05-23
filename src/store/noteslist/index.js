@@ -5,8 +5,9 @@ export { updateNotesList,
           notesLoadSuccess,
           notesLoadError,
           addNoteToState,
-          deleteNoteFromState} from './actions';
-export { addNewNote, getNotesCollection, handleDeleteNote} from './thunks';
-export { selectNotesListData, selectNotesListLoading } from './selectors';
+          deleteNoteFromState,
+          setNotesListFilter, setNote } from './actions';
+export { addNewNote, getNotesCollection, handleDeleteNote, handleSetNotes } from './thunks';
+export { selectNotesListData, selectNotesListFilter, selectNotesListLoading } from './selectors';
 
 export default notesListReducer;

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Input, Button } from 'antd';
-import { addNewNote } from '../store/noteslist';
 import { connect } from "react-redux";
+import { Input, Button } from 'antd/lib/index';
+import { addNewNote } from '../store/noteslist';
 
 import './NewNote.css';
 
@@ -20,10 +20,12 @@ class NewNote extends React.Component {
   handleAddNewNote = () => {
     const { addNewNote } = this.props;
     const { body } = this.state;
-    addNewNote(body);
-    this.setState({
-      body: ''
-    });
+    if(body.trim() !== '') {
+      addNewNote(body);
+      this.setState({
+        body: ''
+      });
+    }
   };
 
 

@@ -1,0 +1,79 @@
+.add-folder-fake{
+    height: 48px;
+    border-right: 1px solid #e8e8e8;
+}
+
+.add-folder {
+    padding: 13px 0 14px 0;
+    border-top: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+}
+
+.groups-list-add-text {
+    font-size: 14px;
+}
+
+.groups-list-add-text-create {
+    margin-left: 7px;
+}
+
+.groups-list-add-input {
+    width: 115px;
+    border: 0;
+    padding: 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.groups-list-add-input:focus {
+    color: #000;
+    border: 0;
+    padding: 0;
+    border-bottom: 1px solid #e8e8e8!important;
+}
+
+/*.btn-default {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    border: 0 solid #fff;*/
+/*    background-color: #fff;*/
+/*}*/
+
+.btn-add-folder-create {
+    margin: 0 7px 0 22px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.btn-add-folder-check {
+    padding: 0 2px;
+    margin: 0 0 0 5px;
+    color: #17a2b8;
+}
+
+.btn-add-folder-abort {
+    padding: 0 2px;
+    margin: 0 7px 0 20px;
+    color: #dc3545;
+}
+
+.btn-add-folder-create:hover, .btn-add-folder-create:hover * {
+    color: #17a2b8;
+}
+
+.btn-add-folder-check:hover, .btn-add-folder-check:hover * {
+    color: #fff;
+    background-color: #17a2b8;
+}
+
+.btn-add-folder-create.focus, .btn-add-folder-create:focus,
+.btn-add-folder-check.focus, .btn-add-folder-check:focus {
+    box-shadow: 0 0 0 .2rem rgba(23, 162, 184, .5)
+}
+
+.btn-add-folder-abort:hover {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.btn-add-folder-abort.focus, .btn-add-folder-abort:focus {
+    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, .5)
+}

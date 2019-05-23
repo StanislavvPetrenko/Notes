@@ -5,15 +5,15 @@ import { authenticateAddUser, authenticateRequest, authenticateSuccess, authenti
 
 const makeUser = user => ({
   uid: user.uid,
-  email: user.email
+  email: user.email,
+  nickname: user.displayName
 });
 
 export const authenticate = (email, password) => dispatch => {
   dispatch(authenticateRequest());
 
   firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(({ user }) => {
-      dispatch(authenticateAddUser(makeUser(user)));
+    .then(() => {
       dispatch(authenticateSuccess());
       dispatch(push('/'));
     })
@@ -22,7 +22,7 @@ export const authenticate = (email, password) => dispatch => {
     })
 };
 
-export const registrationUser = (email, password) => dispatch => {
+export const registrationUser = (email, password, nickname) => dispatch => {
   dispatch(authenticateRequest());
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -30,6 +30,14 @@ export const registrationUser = (email, password) => dispatch => {
       dispatch(authenticateAddUser(makeUser(user)));
       dispatch(authenticateSuccess());
       dispatch(push('/login'));
+      firebase.auth().currentUser.updateProfile({
+        displayName: nickname,
+        photoURL: "http://simpleicon.com/wp-content/uploads/user1.svg"
+      }).then(function() {
+        // Update successful.
+      }).catch(function(error) {
+        // An error happened.
+      });
     })
     .catch( ({ message }) => {
       dispatch(authenticateError(message));

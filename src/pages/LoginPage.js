@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect} from 'react-redux';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox } from 'antd/lib/index';
 import { authenticate, selectAuthLoading } from '../store/authentication';
 
 class NormalLoginForm extends React.Component {
@@ -8,7 +8,7 @@ class NormalLoginForm extends React.Component {
     event.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         this.props.login(values.email, values.password);
       }
     });

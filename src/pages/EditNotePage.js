@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Input, Button, Spin} from 'antd';
+import {Input, Button, Spin} from 'antd/lib/index';
 import {getNote, saveNote, clearNoteInfo} from '../store/onenote';
-import {selectOneNoteData, selectOneNoteLoading} from '../store/onenote/';
+import {selectOneNoteData, selectOneNoteLoading} from '../store/onenote';
 import {selectAuthUser} from "../store/authentication";
 
-class EditNote extends React.Component {
+class EditNotePage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -22,14 +22,12 @@ class EditNote extends React.Component {
     getNote(id)
       .then((note) => {
         if (note) {
-          console.log(note);
           this.setState({
               text: note.body,
               userId: note.userId
             }
           )
         }
-        console.log(note)
       });
   }
 
@@ -52,36 +50,38 @@ class EditNote extends React.Component {
     const { noteLoading, user } = this.props;
     const isValidUser = this.state.userId && user.uid === this.state.userId;
 
-    if (!isValidUser) {
-      return <h1>Access denied!!</h1>
+    if (noteLoading) {
+      return <Spin/>
     }
 
     return (
-      <div className="wrap content">
-        <div className="d-flex notes-list-item">
-          <span>Edit note</span>
-          <i className="fa fa-pencil"/>
-        </div>
-        {noteLoading && <Spin/>}
-        {!noteLoading && (
+      <React.Fragment>
+        { !isValidUser ? <h1>Access denied!!</h1>
+          :
           <div className="wrap content">
-            <TextArea
-              placeholder="Text note"
-              autosize={{minRows: 2, maxRows: 6}}
-              type="text"
-              value={this.state.text}
-              onChange={this.handleChange}
-            />
-            <div style={{margin: '24px 0'}}/>
-            <Button
-              type="primary"
-              onClick={this.handleSaveNote}
-              block>
-              Save note
-            </Button>
-          </div>)
+            <div className="d-flex notes-list-item">
+              <span>Edit note</span>
+              <i className="fa fa-pencil"/>
+            </div>
+            <div className="wrap content">
+              <TextArea
+                placeholder="Text note"
+                autosize={{minRows: 2, maxRows: 6}}
+                type="text"
+                value={this.state.text}
+                onChange={this.handleChange}
+              />
+              <div style={{margin: '24px 0'}}/>
+              <Button
+                type="primary"
+                onClick={this.handleSaveNote}
+                block>
+                Save note
+              </Button>
+            </div>
+          </div>
         }
-      </div>
+      </React.Fragment>
     )
   }
 }
@@ -99,9 +99,9 @@ const
     clearNoteInfo: clearNoteInfo
   };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditNote);
+export default connect(mapStateToProps, mapDispatchToProps)(EditNotePage);
 
-// class EditNote extends React.Component {
+// class EditNotePage extends React.Component {
 //
 //   constructor(props) {
 //     super(props);
@@ -188,4 +188,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(EditNote);
 //   clearNoteInfo: clearNoteInfo
 // };
 //
-// export default connect(mapStateToProps, mapDispatchToProps)(EditNote);
+// export default connect(mapStateToProps, mapDispatchToProps)(EditNotePage);

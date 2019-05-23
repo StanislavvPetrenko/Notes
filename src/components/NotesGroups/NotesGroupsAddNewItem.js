@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Input} from 'antd';
+import {Input, Icon} from 'antd/lib/index';
 
-import {addNewGroup} from '../store/notesgroups';
-import './AddNewGroup.css'
+import {addNewGroup} from '../../store/notesgroups';
+import './NotesGroupsAddNewItem.css'
 
-class AddNewGroup extends React.Component {
+class NotesGroupsAddNewItem extends React.Component {
 
   constructor(props) {
     super(props);
@@ -29,14 +29,16 @@ class AddNewGroup extends React.Component {
   handleAddNewGroup = () => {
     const { addNewGroup } = this.props;
     const { name } = this.state;
-    addNewGroup(name);
-    this.setState(( { isCreateNewGroup, isAddNewGroup }) => {
-      return {
-        isCreateNewGroup: !isCreateNewGroup,
-        isAddNewGroup: !isAddNewGroup,
-        name: ''
-      }
-    });
+    if(name.trim() !== '') {
+      addNewGroup(name);
+      this.setState(({isCreateNewGroup, isAddNewGroup}) => {
+        return {
+          isCreateNewGroup: !isCreateNewGroup,
+          isAddNewGroup: !isAddNewGroup,
+          name: ''
+        }
+      });
+    }
   };
 
   handleAbortAddNewGroup = () => {
@@ -55,8 +57,7 @@ class AddNewGroup extends React.Component {
       }
     )
   };
-
-
+  
   render() {
     const { isCreateNewGroup, isAddNewGroup } = this.state;
 
@@ -65,38 +66,34 @@ class AddNewGroup extends React.Component {
 
     return (
       <React.Fragment>
-        <div className={`${classCreateNewGroupButton}`}>
-          <span className="notes-list-add-text">Add new group</span>
+        <div className="add-folder-fake"/>
+        <div className={`add-folder ${classCreateNewGroupButton}`}>
           <button
-            type="button"
-            className="btn btn-outline-info btn-sm float-right"
+            className="btn-default btn-add-folder-create d-flex align-items-center"
             onClick={this.handleCreateNewGroup}
           >
-            <i className="fa fa-folder"/>
+            <Icon type="folder-add"/>
+            <span className="groups-list-add-text groups-list-add-text-create">Create new group</span>
           </button>
         </div>
-        <div className={`${classAddNewGroupButton}`}>
-          <Input
-            className="flex-grow-0 notes-group-input"
-            size="large"
+        <div className={`add-folder ${classAddNewGroupButton}`}>
+          <button
+            className="btn-default btn-add-folder-abort d-flex align-items-center"
+            onClick={this.handleAbortAddNewGroup}
+          >
+            <Icon type="close-square" />
+          </button>
+          <input
+            className="groups-list-add-text groups-list-add-input"
             placeholder="Enter group name"
-            type="text"
             value={this.state.name}
             onChange={this.handleChange}
           />
           <button
-            type="button"
-            className="btn btn-outline-info btn-sm float-right flex-shrink-1"
+            className="btn-default btn-add-folder-check d-flex align-items-center"
             onClick={this.handleAddNewGroup}
           >
-          <i className="fa fa-check add-group-check"/>
-          </button>
-          <button
-            type="button"
-            className="btn btn-outline-danger btn-sm float-right"
-            onClick={this.handleAbortAddNewGroup}
-          >
-            <i className="fa fa-times add-group-times"/>
+            <Icon type="check-square"/>
           </button>
          </div>
       </React.Fragment>
@@ -108,4 +105,4 @@ const mapDispatchToProps = {
   addNewGroup: addNewGroup
 };
 
-export default connect(null, mapDispatchToProps)(AddNewGroup)
+export default connect(null, mapDispatchToProps)(NotesGroupsAddNewItem)

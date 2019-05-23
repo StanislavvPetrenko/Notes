@@ -7,7 +7,7 @@ import { NOTES_GROUPS_LOAD_REQUEST,
 
 
 const initialState = {
-  data: {},
+  data: [],
   loading: true
 };
 
@@ -32,7 +32,7 @@ const notesGroupsReducer = (state = initialState, action) => {
     case ADD_NEW_NOTES_GROUP:
       return {
         ...state,
-        data: action.payload
+        data: [...state.data, action.payload]
       };
     case DEL_NOTES_GROUP:
       return {

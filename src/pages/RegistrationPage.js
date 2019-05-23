@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Tooltip, Icon, Button } from 'antd';
+import { Form, Input, Tooltip, Icon, Button } from 'antd/lib/index';
 import { registrationUser, selectAuthUser } from '../store/authentication';
-import { Redirect, Route } from "react-router";
 
 class RegistrationForm extends React.Component {
   state = {
@@ -14,7 +13,7 @@ class RegistrationForm extends React.Component {
     event.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
         const { email, password, nickname } = values;
         this.props.createUser(email, password, nickname);
       }
@@ -69,12 +68,6 @@ class RegistrationForm extends React.Component {
         },
       },
     };
-
-    const { user } = this.props;
-
-    // if (user) {
-    //   return <Redirect to="/" />;
-    // }
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>

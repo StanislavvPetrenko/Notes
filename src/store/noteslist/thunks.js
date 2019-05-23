@@ -1,21 +1,31 @@
 import { push } from 'connected-react-router';
 import firebase from '../firebase';
-import { updateNotesList, notesLoadRequest, notesLoadSuccess, notesLoadError, deleteNoteFromState, addNoteToState } from './actions';
+import { updateNotesList,
+        notesLoadRequest,
+        notesLoadSuccess,
+        notesLoadError,
+        deleteNoteFromState,
+        addNoteToState,
+        setNote } from './actions';
 
-export const addNewNote = (body) => dispatch => {
+export const addNewNote = (body, group) => dispatch => {
   dispatch(notesLoadRequest());
   const uid = firebase.auth().currentUser.uid;
   console.log('Add new noteslist!', uid);
 
   firebase.firestore().collection('notes').add(
     {
-    body: body,
-    userId: uid
-  })
+      body: body,
+      group: group || "all",
+      deleted: false,
+      userId: uid
+    })
     .then((docRef) => {
       console.log('Document written with ID: ', docRef.id);
       const note = {
         body: body,
+        group: group || "all",
+        deleted: false,
         id: docRef.id
       };
       dispatch(addNoteToState(note));
@@ -40,7 +50,9 @@ export const getNotesCollection = () => dispatch => {
         // doc.data() is never undefined for query doc snapshots
         const note = {
           body: doc.data().body,
-          id: doc.id
+          group: doc.data().group,
+          deleted: doc.data().deleted,
+          id: doc.id,
         };
         notes.push(note);
       });
@@ -61,6 +73,30 @@ export const handleDeleteNote = (id) => dispatch => {
   }).catch((error) => {
     console.error("Error removing document: ", error);
   });
+};
+
+export const handleSetNotes = (note) => dispatch => {
+  console.log('This text will save');
+
+  const uid = firebase.auth().currentUser.uid;
+
+  firebase.firestore().collection('notes').doc(note.id).set({
+    body: note.body,
+    group: note.group,
+    deleted: note.deleted,
+    userId: uid
+  })
+    .then(() => {
+      console.log("Document successfully written!");
+      dispatch(setNote({
+        body: note.body,
+        group: note.group,
+        deleted: note.deleted,
+        id: note.id}));
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
 };
 
 // export const addNewNote = (title, body) => dispatch => {
