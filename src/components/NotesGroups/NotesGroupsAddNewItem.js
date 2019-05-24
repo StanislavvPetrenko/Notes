@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Input, Icon} from 'antd/lib/index';
 
-import {addNewGroup} from '../../store/notesgroups';
+import {handleAddNewGroup} from '../../store/notesgroups';
 import './NotesGroupsAddNewItem.css'
 
 class NotesGroupsAddNewItem extends React.Component {
@@ -11,17 +11,15 @@ class NotesGroupsAddNewItem extends React.Component {
     super(props);
     this.state = {
       isCreateNewGroup: false,
-      isAddNewGroup: false,
       name: ''
     };
   }
 
   handleCreateNewGroup = () => {
 
-    this.setState(( { isCreateNewGroup, isAddNewGroup }) => {
+    this.setState(( { isCreateNewGroup }) => {
       return {
-        isCreateNewGroup: !isCreateNewGroup,
-        isAddNewGroup: !isAddNewGroup
+        isCreateNewGroup: !isCreateNewGroup
       }
     });
   };
@@ -31,10 +29,9 @@ class NotesGroupsAddNewItem extends React.Component {
     const { name } = this.state;
     if(name.trim() !== '') {
       addNewGroup(name);
-      this.setState(({isCreateNewGroup, isAddNewGroup}) => {
+      this.setState(({isCreateNewGroup}) => {
         return {
           isCreateNewGroup: !isCreateNewGroup,
-          isAddNewGroup: !isAddNewGroup,
           name: ''
         }
       });
@@ -42,10 +39,9 @@ class NotesGroupsAddNewItem extends React.Component {
   };
 
   handleAbortAddNewGroup = () => {
-    this.setState(( { isCreateNewGroup, isAddNewGroup }) => {
+    this.setState(( { isCreateNewGroup }) => {
       return {
         isCreateNewGroup: !isCreateNewGroup,
-        isAddNewGroup: !isAddNewGroup,
         name: ''
       }
     });
@@ -59,15 +55,15 @@ class NotesGroupsAddNewItem extends React.Component {
   };
   
   render() {
-    const { isCreateNewGroup, isAddNewGroup } = this.state;
+    const { isCreateNewGroup } = this.state;
 
-    const classCreateNewGroupButton = isCreateNewGroup ? 'd-none' : 'd-flex';
-    const classAddNewGroupButton = isAddNewGroup ? 'd-flex' : 'd-none';
+    const classCreateGroup = isCreateNewGroup ? 'd-none' : 'd-flex';
+    const classAddGroup = isCreateNewGroup ? 'd-flex' : 'd-none';
 
     return (
       <React.Fragment>
         <div className="add-folder-fake"/>
-        <div className={`add-folder ${classCreateNewGroupButton}`}>
+        <div className={`add-folder ${classCreateGroup}`}>
           <button
             className="btn-default btn-add-folder-create d-flex align-items-center"
             onClick={this.handleCreateNewGroup}
@@ -76,7 +72,7 @@ class NotesGroupsAddNewItem extends React.Component {
             <span className="groups-list-add-text groups-list-add-text-create">Create new group</span>
           </button>
         </div>
-        <div className={`add-folder ${classAddNewGroupButton}`}>
+        <div className={`add-folder ${classAddGroup}`}>
           <button
             className="btn-default btn-add-folder-abort d-flex align-items-center"
             onClick={this.handleAbortAddNewGroup}
@@ -102,7 +98,7 @@ class NotesGroupsAddNewItem extends React.Component {
 }
 
 const mapDispatchToProps = {
-  addNewGroup: addNewGroup
+  addNewGroup: handleAddNewGroup
 };
 
 export default connect(null, mapDispatchToProps)(NotesGroupsAddNewItem)

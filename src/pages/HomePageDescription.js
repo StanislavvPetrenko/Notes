@@ -6,7 +6,7 @@ const HomePageDescription = () => {
   const { Paragraph } = Typography;
 
   return (
-    <Layout className="description-container">
+    <Layout className="bg-color-white description-container">
       <Row>
         <Col span={4}>
           <img

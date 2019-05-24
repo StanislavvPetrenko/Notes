@@ -9,7 +9,7 @@ class NotesPage extends React.Component {
 
   render() {
     return (
-      <Layout className="notes-page-container flex-row">
+      <Layout className="note-page bg-color-white flex-row">
         <NotesGroupsList />
         <NotesList />
       </Layout>
@@ -21,7 +21,7 @@ export default NotesPage;
 
 // render() {
 //    return (
-//       <Layout className="notes-page-container flex-row">
+//       <Layout className="bg-color-white flex-row">
 //         <Row>
 //           <Col span={4}>
 //             <NotesGroupsList/>
@@ -34,3 +34,4 @@ export default NotesPage;
 //    );
 //   }
 // }
+// export default NotesPage;

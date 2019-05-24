@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Tooltip, Icon, Button } from 'antd/lib/index';
+import { Form, Input, Tooltip, Icon, Button, Layout } from 'antd/lib/index';
 import { registrationUser, selectAuthUser } from '../store/authentication';
 
 class RegistrationForm extends React.Component {
@@ -69,67 +69,73 @@ class RegistrationForm extends React.Component {
       },
     };
 
+    const { Content } = Layout;
+
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-        <Form.Item
-          label="E-mail"
-        >
-          {getFieldDecorator('email', {
-            rules: [{
-              type: 'email', message: 'The input is not valid E-mail!',
-            }, {
-              required: true, message: 'Please input your E-mail!',
-            }],
-          })(
-            <Input />
-          )}
-        </Form.Item>
-        <Form.Item
-          label="Password"
-        >
-          {getFieldDecorator('password', {
-            rules: [{
-              required: true, message: 'Please input your password!',
-            }, {
-              validator: this.validateToNextPassword,
-            }],
-          })(
-            <Input type="password" />
-          )}
-        </Form.Item>
-        <Form.Item
-          label="Confirm Password"
-        >
-          {getFieldDecorator('confirm', {
-            rules: [{
-              required: true, message: 'Please confirm your password!',
-            }, {
-              validator: this.compareToFirstPassword,
-            }],
-          })(
-            <Input type="password" onBlur={this.handleConfirmBlur} />
-          )}
-        </Form.Item>
-        <Form.Item
-          label={(
-            <span>
+      <Content className="d-flex note-container justify-content-around">
+        <Form {...formItemLayout} onSubmit={this.handleSubmit} className="registration-form">
+          <Form.Item
+            label="E-mail"
+          >
+            {getFieldDecorator('email', {
+              rules: [{
+                type: 'email', message: 'The input is not valid E-mail!',
+              }, {
+                required: true, message: 'Please input your E-mail!',
+              }],
+            })(
+              <Input />
+            )}
+          </Form.Item>
+          <Form.Item
+            label="Password"
+          >
+            {getFieldDecorator('password', {
+              rules: [{
+                required: true, message: 'Please input your password!',
+              }, {
+                validator: this.validateToNextPassword,
+              }],
+            })(
+              <Input type="password" />
+            )}
+          </Form.Item>
+          <Form.Item
+            label="Confirm Password"
+          >
+            {getFieldDecorator('confirm', {
+              rules: [{
+                required: true, message: 'Please confirm your password!',
+              }, {
+                validator: this.compareToFirstPassword,
+              }],
+            })(
+              <Input type="password" onBlur={this.handleConfirmBlur} />
+            )}
+          </Form.Item>
+          <Form.Item
+            label={(
+              <span>
               Nickname&nbsp;
-              <Tooltip title="What do you want others to call you?">
+                <Tooltip title="What do you want others to call you?">
                 <Icon type="question-circle-o" />
               </Tooltip>
             </span>
-          )}
-        >
-          {getFieldDecorator('nickname', {
-            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
-          })(
-            <Input />
-          )}
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">Register</Button>
-        </Form.Item>
-      </Form>
+            )}
+          >
+            {getFieldDecorator('nickname', {
+              rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+            })(
+              <Input />
+            )}
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <div className="d-flex justify-content-center">
+              <Button type="primary" htmlType="submit">Register</Button>
+            </div>
+          </Form.Item>
+        </Form>
+      </Content>
     );
   }
 }

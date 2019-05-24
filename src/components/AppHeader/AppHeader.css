@@ -1,7 +1,3 @@
-.header-logo {
-    color: #fff;
-}
-
 .header-nav-link {
     margin-left: 20px;
 }
@@ -10,13 +6,6 @@
     color: #fff;
 }
 
-.custom-header-container {
-}
-
 .menu-btn-text {
     margin-left: 7px;
-}
-
-#components-dropdown-demo-dropdown-button > button > i > svg {
-    padding-bottom: 2px;
 }

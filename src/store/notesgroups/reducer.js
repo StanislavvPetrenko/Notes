@@ -3,7 +3,8 @@ import { NOTES_GROUPS_LOAD_REQUEST,
   NOTES_GROUPS_LOAD_ERROR,
   ADD_NEW_NOTES_GROUP,
   DEL_NOTES_GROUP,
-  UPD_NOTES_GROUPS } from './constants';
+  UPD_NOTES_GROUPS,
+  RENAME_NOTES_GROUP } from './constants';
 
 
 const initialState = {
@@ -43,6 +44,11 @@ const notesGroupsReducer = (state = initialState, action) => {
       return {
         ...state,
         data: action.payload
+      };
+    case RENAME_NOTES_GROUP:
+      return {
+        ...state,
+        data: [...state.data.filter((el) => el.id !== action.payload.id), action.payload]
       };
     default:
       return state

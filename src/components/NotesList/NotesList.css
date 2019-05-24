@@ -25,22 +25,14 @@
     margin: 5px 2px 5px 7px;
 }
 
-.btn-add-file {
-    margin: 0;
-    padding: 0;
-    border: 0 solid #fff;
-    background-color: #fff;
-}
-
 .notes-list-header-link:hover, .notes-list-header-link:hover .btn-add-file {
     color: #fff;
     background-color: #1890ff;
-    border: 0 solid #1890ff;
 }
 
 .notes-list-header-link.focus, .notes-list-header-link:focus,
 .notes-list-header-link.focus .btn-add-file, .notes-list-header-link:focus .btn-add-file {
-    box-shadow: 0 0 0 .1rem rgba(24, 144, 255, .5)
+    box-shadow: 0 0 0 .2rem rgba(24, 144, 255, .5)
 }
 
 .notes-list-empty {

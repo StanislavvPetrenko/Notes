@@ -8,9 +8,6 @@ import './AppHeader.css';
 class AppHeader extends React.Component {
 
   handleMenuClick = (e) => {
-    if (e.key === "settings") {
-     return <Redirect to="/settings" />;
-    }
     if (e.key === "logout") {
       const { signOut } = this.props;
       signOut();
@@ -42,7 +39,9 @@ class AppHeader extends React.Component {
     return (
       <Header className="custom-header-container">
         <Row type="flex" justify="space-between" align="middle">
-          <h1 className="header-logo">Black'note</h1>
+          <Link to="/">
+            <h1 className="color-white">Black'note</h1>
+          </Link>
           { user ?
             <div id="components-dropdown-demo-dropdown-button">
               <Dropdown.Button overlay={menu} icon={<Icon type="user" />}>

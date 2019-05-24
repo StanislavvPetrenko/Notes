@@ -52,13 +52,13 @@ class NotesListItem extends React.Component {
             <div className="wrap-btn-list-item d-flex align-items-center flex-nowrap">
               <Link to={`/notes/${id}`}>
                 <button
-                  className="btn-default btn-list-item btn-list-item-edit d-flex align-items-center"
+                  className="color-one btn-list-item btn-item-edit d-flex align-items-center"
                 >
                   <Icon type="form"/>
                 </button>
               </Link>
               <button
-              className = "btn-default btn-list-item btn-list-item-delete d-flex align-items-center"
+              className="color-two btn-list-item btn-item-delete d-flex align-items-center"
               onClick={this.handleMoveNoteToTrash}
               >
               <Icon type="delete"/>
@@ -67,13 +67,13 @@ class NotesListItem extends React.Component {
             :
             <div className="wrap-btn-list-item d-flex align-items-center flex-nowrap">
               <button
-                className="btn-default btn-list-item btn-list-item-edit d-flex align-items-center"
+                className="color-one btn-list-item btn-item-edit d-flex align-items-center"
                 onClick={this.handleRestoreNote}
               >
                 <Icon type="rollback" />
               </button>
               <button
-                className = "btn-default btn-list-item btn-list-item-delete d-flex align-items-center"
+                className = "color-two btn-list-item btn-item-delete d-flex align-items-center"
                 onClick={this.handleDeleteNote}
               >
                 <Icon type="stop" />

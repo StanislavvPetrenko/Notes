@@ -28,33 +28,5 @@
     margin: 0 6px 0 0;
     padding: 4px;
     font-size: 20px;
-    border: 0 solid #fff;
     border-radius: 4px;
-    background-color: #fff;
-}
-
-.btn-list-item-edit {
-    color: #28a745;
-}
-
-.btn-list-item-delete {
-    color: #dc3545;
-}
-
-.btn-list-item-edit:hover {
-    color: #fff;
-    background-color: #28a745;
-}
-
-.btn-list-item-edit.focus, .btn-list-item-edit:focus {
-    box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .5)
-}
-
-.btn-list-item-delete:hover {
-    color: #fff;
-    background-color: #dc3545;
-}
-
-.btn-list-item-delete.focus, .btn-list-item-delete:focus {
-    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, .5)
 }

@@ -30,9 +30,9 @@ class NotesList extends React.Component {
           <div className="notes-list-header-link">
             <Link to="/create-note">
               <button
-                className="d-flex flex-nowrap align-items-center btn-add-file"
+                className="btn-add-file d-flex flex-nowrap align-items-center"
               >
-                <Icon type="file-add" theme="twoTone"/>
+                <Icon type="file-add"/>
                 <span className="notes-list-header-add-text">Add new note</span>
               </button>
             </Link>

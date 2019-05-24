@@ -21,7 +21,8 @@ class NotesGroupsList extends React.Component {
   handleSetFilter = (e) => {
     const { setFilter } = this.props;
     console.log('onClick!', e);
-    e.key === "deleted" ? setFilter({group: "", deleted: true}) : setFilter({group: e.key, deleted: false});
+    e.key === "deleted" ? setFilter({group: "", deleted: true}) : setFilter({group: e
+        .key, deleted: false});
   };
 
   componentDidMount() {

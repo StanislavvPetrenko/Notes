@@ -22,6 +22,7 @@ export const addNewNote = (body, group) => dispatch => {
     })
     .then((docRef) => {
       console.log('Document written with ID: ', docRef.id);
+      console.log('Document written with group: ', group);
       const note = {
         body: body,
         group: group || "all",

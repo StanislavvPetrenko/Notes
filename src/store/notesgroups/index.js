@@ -5,9 +5,10 @@ export { notesGroupLoadRequest,
         notesGroupLoadError,
         addNewNotesGroup,
         delNotesGroup,
-        updateNotesGroups} from './actions';
+        updateNotesGroups,
+        renameNotesGroup} from './actions';
 
-export { addNewGroup, getGroupsCollection, handleDeleteGroup } from './thunk';
+export { handleAddNewGroup, getGroupsCollection, handleDeleteGroup, handleRenameNotesGroup } from './thunk';
 export { selectNotesGroupsData, selectNotesGroupsLoading } from './selectors';
 
 export default notesGroupsReducer;

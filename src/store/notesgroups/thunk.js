@@ -6,14 +6,15 @@ import {notesGroupLoadRequest,
         notesGroupLoadError,
         addNewNotesGroup,
         delNotesGroup,
-        updateNotesGroups} from './actions';
+        updateNotesGroups,
+        renameNotesGroup } from './actions';
 
-export const addNewGroup = (name) => dispatch => {
+export const handleAddNewGroup = (name) => dispatch => {
   dispatch(notesGroupLoadRequest());
   const uid = firebase.auth().currentUser.uid;
   console.log('Add new group!', uid);
 
-  firebase.firestore().collection('groups').add(
+  return firebase.firestore().collection('groups').add(
     {
       name: name,
       userId: uid,
@@ -26,6 +27,7 @@ export const addNewGroup = (name) => dispatch => {
       };
       dispatch(addNewNotesGroup(group));
       dispatch(notesGroupLoadSuccess());
+      return group;
     })
     .catch((error) => {
       console.error('Error adding document: ', error);
@@ -38,7 +40,7 @@ export const getGroupsCollection = () => dispatch => {
   const groups = [];
   const uid = firebase.auth().currentUser.uid;
 
-  firebase.firestore().collection('groups').where('userId', "==", uid)
+ return firebase.firestore().collection('groups').where('userId', "==", uid)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -51,6 +53,7 @@ export const getGroupsCollection = () => dispatch => {
       });
       dispatch(updateNotesGroups(groups));
       dispatch(notesGroupLoadSuccess());
+      return groups;
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);
@@ -66,4 +69,24 @@ export const handleDeleteGroup = (id) => dispatch => {
   }).catch((error) => {
     console.error("Group removing document: ", error);
   });
+};
+
+export const handleRenameNotesGroup = (group) => dispatch => {
+  console.log('This text will save');
+
+  const uid = firebase.auth().currentUser.uid;
+
+  firebase.firestore().collection('groups').doc(group.id).set({
+    name: group.name,
+    userId: uid
+  })
+    .then(() => {
+      console.log("Document successfully written!");
+      dispatch(renameNotesGroup({
+        name: group.name,
+        id: group.id}));
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
 };

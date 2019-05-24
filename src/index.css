@@ -7,13 +7,25 @@ body {
 }
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Normalize styles */
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 *, :before, :after {
@@ -26,12 +38,18 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
 }
 
- /*Global classes */
+ /* Global classes */
 
 .d-block {
   display: block;
@@ -182,42 +200,35 @@ code {
   transform: translate(-50%, -50%);
 }
 
-.btn-default {
-  margin: 0;
-  padding: 0;
-  border: 0 solid #fff;
-  background-color: #fff;
+.color-main {
+  color: rgba(0, 0, 0, 0.65);
 }
 
-.clr-main {
-  color: #616161;
+.color-default {
+  color: rgba(0, 0, 0, 0.85);
 }
 
-.clr-default {
-  color: #313131;
+.color-add {
+  color: #1890ff;
 }
 
-.clr-add {
-  color: #272727;
+.color-one {
+  color: #28a745;
 }
 
-.clr-one {
-  color: #fc5f45
+.color-two {
+  color: #dc3545
 }
 
-.clr-two {
+.color-three {
   color: #feb960
 }
 
-.clr-three {
-  color: #38c695;
-}
-
-.clr-four {
+.color-four {
   color: #b27cf5;
 }
 
-.clr-wht {
+.color-white {
   color: #fff;
 }
 
@@ -229,6 +240,44 @@ code {
   background-color: rgba(38, 39, 50, 0.85);;
 }
 
-.clr-bg-wht {
+.bg-color-white {
   background-color: #fff;
 }
+
+/* Element's classes */
+
+.note-container {
+  padding: 25px 50px;
+  font-size: 1.17rem;
+}
+
+.note-header {
+  margin-bottom: 20px;
+}
+
+.note-header-title {
+  margin: 0 10px 0 25px;
+}
+
+.note-header-icon {
+  margin-top: 2px;
+}
+
+.note-container-main{
+  padding: 5px 8%;
+}
+
+.note-text-area {
+  margin-bottom: 20px;
+}
+
+.login-page-text {
+  margin: 0 10px;
+}
+
+.registration-form {
+  width: 100%;
+  max-width: 768px;
+  margin-right: 10%;
+}
+

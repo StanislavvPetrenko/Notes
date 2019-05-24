@@ -33,6 +33,8 @@ export const saveNote = (note) => dispatch => {
 
   firebase.firestore().collection('notes').doc(note.id).set({
     body: note.body,
+    group: note.group,
+    deleted: false,
     userId: uid
   })
   .then(() => {

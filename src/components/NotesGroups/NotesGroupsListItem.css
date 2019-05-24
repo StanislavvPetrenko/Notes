@@ -1,0 +1,21 @@
+.btn-group {
+    margin: 2px 1px 0;
+    height: 20px;
+    padding: 0 0 35px 10px;
+    border-radius: 6px;
+}
+
+.group-item-input {
+    color: #000;
+    height: 20px;
+    width: 115px;
+    border: 0;
+    padding: 0;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid #a8a8a8!important;
+}
+
+.group-item-input:focus {
+    font-weight: bold;
+}

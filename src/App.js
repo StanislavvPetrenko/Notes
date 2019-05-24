@@ -6,14 +6,15 @@ import { Spin } from 'antd';
 
 import { history } from './store';
 import { selectAuthLoading, selectAuthUser, subscribeChangeUser} from './store/authentication';
+import {selectNotesListLoading} from './store/noteslist';
 
 import AppHeader from './components/AppHeader/AppHeader';
 import HomePage from './pages/HomePage';
 import login from './pages/LoginPage';
 import RegistrationForm from './pages/RegistrationPage';
 import EditNote from './pages/EditNotePage';
-import NewNote from './pages/NewNote';
-
+import NewNote from './pages/AddNewNote';
+import SettingsPage from './pages/SettingsPage';
 
 const unauthorizedRoutes = ['/registration', '/login'];
 
@@ -46,7 +47,9 @@ class App extends React.Component {
     const { userLoading } = this.props;
     return (
       userLoading ?
-        <Spin size="large" tip="Loading..."/>
+        <div className="text-center absolute-center">
+          <Spin size="large" tip="Loading..."/>
+        </div>
         :
         <ConnectedRouter history={history}>
           <AppHeader />
@@ -56,7 +59,7 @@ class App extends React.Component {
             <PrivateRoute path="/registration" component={RegistrationForm}/>
             <PrivateRoute path="/notes/:id" component={EditNote}/>
             <PrivateRoute path="/create-note" component={NewNote}/>
-            <PrivateRoute path="/settings"/>
+            <PrivateRoute path="/settings" component={SettingsPage}/>
             <Route path="*" component={() => (<div>404</div>)}/>
           </Switch>
         </ConnectedRouter>
@@ -65,7 +68,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  userLoading: selectAuthLoading(state)
+  userLoading: selectAuthLoading(state),
+  notesListLoading: selectNotesListLoading(state)
 });
 
 const mapDispatchToProps = {

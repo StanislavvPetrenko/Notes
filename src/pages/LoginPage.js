@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect} from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd/lib/index';
 import { authenticate, selectAuthLoading } from '../store/authentication';
+import FormItem from 'antd/es/form/FormItem';
 
 class NormalLoginForm extends React.Component {
   handleSubmit = (event) => {
@@ -21,7 +23,7 @@ class NormalLoginForm extends React.Component {
       <React.Fragment>
         { loading ? <p>Loading....</p>
         :
-        <Form onSubmit={this.handleSubmit} className="login-form">
+        <Form onSubmit={this.handleSubmit} className="login-form note-container">
           <Form.Item>
             {getFieldDecorator('email', {
               rules: [{ required: true, message: 'Please input your username!' }],
@@ -36,6 +38,13 @@ class NormalLoginForm extends React.Component {
               <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
             )}
           </Form.Item>
+          <FormItem>
+            <Button type="primary" htmlType="submit" className="login-form-button">
+              Log in
+            </Button>
+            <span className="login-page-text">Or</span>
+            <Link to="/registration">Register now!</Link>
+          </FormItem>
           <Form.Item>
             {getFieldDecorator('remember', {
               valuePropName: 'checked',
@@ -44,10 +53,6 @@ class NormalLoginForm extends React.Component {
               <Checkbox>Remember me</Checkbox>
             )}
             <a className="login-form-forgot" href="">Forgot password</a>
-            <Button type="primary" htmlType="submit" className="login-form-button">
-              Log in
-            </Button>
-            Or <a href="/registration">register now!</a>
           </Form.Item>
         </Form>
         }

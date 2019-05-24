@@ -1,3 +1,21 @@
-.notes-page-container {
-    background: #fff;
+.note-page {
+    height: 100%;
+}
+
+.btn-item-edit:hover {
+    color: #fff;
+    background-color: #28a745;
+}
+
+.btn-item-edit.focus, .btn-item-edit:focus {
+    box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .5)
+}
+
+.btn-item-delete:hover {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.btn-item-delete.focus, .btn-item-delete:focus {
+    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, .5)
 }

@@ -9,12 +9,12 @@
     border-right: 1px solid #e8e8e8;
 }
 
-.groups-list-add-text {
-    font-size: 14px;
+.groups-list-add-text-create {
+    margin-left: 8px;
 }
 
-.groups-list-add-text-create {
-    margin-left: 7px;
+.groups-list-add-text {
+    font-size: 14px;
 }
 
 .groups-list-add-input {
@@ -22,21 +22,13 @@
     border: 0;
     padding: 0;
     border-bottom: 1px solid #e8e8e8;
+    outline: none;
 }
 
 .groups-list-add-input:focus {
     color: #000;
-    border: 0;
-    padding: 0;
     border-bottom: 1px solid #e8e8e8!important;
 }
-
-/*.btn-default {*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    border: 0 solid #fff;*/
-/*    background-color: #fff;*/
-/*}*/
 
 .btn-add-folder-create {
     margin: 0 7px 0 22px;
